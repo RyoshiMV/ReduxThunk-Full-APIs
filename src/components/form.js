@@ -7,10 +7,10 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: 'list',
             notify: 'List current is null',
         };
-
+        // nếu không bind ở đây chúng ta sẽ phải dùng arrowffunction bên dưới để call;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -36,20 +36,19 @@ class Form extends React.Component {
 
 
     render() {
-        console.log('of loading: ' + this.props.loading);
-        console.log('products of components Form: ' + JSON.stringify(this.props.products))
+       // const { lableName } = this.props;
         return (
             <>
                 <label>
-                    Name:
+                    {this.props.lableName} : 
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
                 </label>
                 <button onClick={this.handleSubmit}>Submit</button>
                 <h2 style={loadingStyle}>{this.props.loading}</h2>
-                <Display products={this.props.products} notify={this.state.notify}/>
+                <Display products={this.props.products} notify={this.state.notify} />
             </>
         );
-    } 
+    }
 }
 
 // state tham số truyền vào này là state của redux đã hoàn chỉnh;
