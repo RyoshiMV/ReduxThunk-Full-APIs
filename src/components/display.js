@@ -24,19 +24,8 @@ export default class Display extends React.Component {
         // thường chỉ đọc ra props ở đây
         // logic có thể viết hàm có sẵn willmout didmout or return;
         return (
-            <div>
-                {/* {(() => {
-                    // if (products.length < 0) {
-                    //     return (
-                    //         <h1>danh sách là:</h1>
-                    //     )
-                    // } else {
-                    //     return (
-                    //         <h1>danh sách null:</h1>
-                    //     )
-                    // }
-                })()} */}
-                <h1 style={notifyStyle}>{notify}</h1>
+            <div className="container">
+                <p style={notifyStyle}>{notify}</p>
                 <ul>
                     {products.map(p => (
                         <li key={p.id}>
@@ -69,8 +58,8 @@ export default class Display extends React.Component {
     // nếu return false nó sẽ không bao giờ cập nhật chạy lại render();
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.test === nextState.test) {
-          return true;
-        }else{
+            return true;
+        } else {
             return false;
         }
     }
