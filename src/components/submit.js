@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 export default class Submit extends React.Component {
     constructor(props) {
         super(props);
@@ -7,17 +8,17 @@ export default class Submit extends React.Component {
             image: null,
             title: '',
             content: '',
+            res: 'chưa up',
         }
-
     }
 
     handleSubmit = (event) => {
+        
         event.preventDefault();
         var data = new FormData();
-        console.log(this.state.image[0]);
         data.append('title', this.state.title);
         data.append('content', this.state.content);
-        data.append('file', this.state.image[0]);
+        data.append('file', this.state.image);
 
         var config = {
             method: 'post',
@@ -27,15 +28,20 @@ export default class Submit extends React.Component {
 
         axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
+                console.log('phản hồi Api:' + JSON.stringify(response.data));
+                if (JSON.stringify(response.data) === 'done') {
+                    this.setState({
+                        res: 'Done all',
+                    })
+                } else {
+                    this.setState({
+                        res: 'Thất bại',
+                    })
+                }
             })
             .catch(function (error) {
-                console.log(error);
+                console.log('vào đây:' + error);
             });
-
-
-
-        alert('A name was submitted: ' + this.state.value);
     }
 
     render() {
@@ -57,12 +63,15 @@ export default class Submit extends React.Component {
                     }} value={this.state.content} type="text" name="content" /><br></br>
                     <input onChange={(e) => {
                         this.setState({
-                            image: e.target.files,
+                            image: e.target.files[0],
                         })
                     }} type="file" name="file" /><br></br><br></br>
                     <input type="submit" value="AddBlog" />
+                    <br></br><br></br>
+                    <label className='notify-blog'>{this.state.res}</label>
                 </div>
             </form>
+
         );
     }
 }
