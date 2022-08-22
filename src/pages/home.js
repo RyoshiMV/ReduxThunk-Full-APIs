@@ -13,8 +13,6 @@ export default class Home extends React.Component {
         }
     }
 
-
-
     render() {
         return (
             <div className='container'>
@@ -23,7 +21,7 @@ export default class Home extends React.Component {
                     <div className='col-md-6'>
                         <WellCome nam={this.state.nam} />
                         <h1>
-                            Fetch list products
+                            Fetch list products of blogs
                         </h1>
                         <Submit />
                     </div>

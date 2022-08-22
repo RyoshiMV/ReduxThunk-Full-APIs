@@ -71,7 +71,6 @@ export default class Submit extends React.Component {
                     <label className='notify-blog'>{this.state.res}</label>
                 </div>
             </form>
-
         );
     }
 }

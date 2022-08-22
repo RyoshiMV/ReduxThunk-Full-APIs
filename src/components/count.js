@@ -13,7 +13,10 @@ export const Count = () => {
 
     // ví dụ khi bạn call APIs một thành phần biến trong link APIs đã thay đổi state 
     // thì lập tức hàm useEffect này sẽ auto để cập nhật components;
+    // callback chính là hàm () => 
     useEffect(() => {
+        // có thể lấy đc all state tại đây khi thay đổi;
+        document.title = 'Call to ' +id;
         fetch('https://jsonplaceholder.typicode.com/todos/' + id)
             .then(response => response.json())
             .then(json => console.log(json));
@@ -41,7 +44,6 @@ export const Count = () => {
             </button> <br></br>
             <input
                 onChange={(e) => {
-                    console.log('xem e có gì: ' + JSON.stringify(e, null, 4));
                     setUser({
                         ...user,
                         name: e.target.value
